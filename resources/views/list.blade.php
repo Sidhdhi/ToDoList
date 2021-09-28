@@ -7,18 +7,18 @@
                 <td> Title </td>
                 <td> Task </td>
                 <td> Status </td>
-                <td> Created At</td>
-                <td> Updated At</td>
+                <td> Actions </td>
             </tr>
-            @foreach($ToDoArray as $ToDo)
+            @foreach($tasks as $task)
             <tr>
-            <td> {{$ToDo -> id}} </td>
-            <td> {{$ToDo -> title}} </td>
-            <td> {{$ToDo -> task}} </td>
-            <td> {{$ToDo -> iscompleted}} </td>
-            <td> {{$ToDo -> created_at}} </td>
-            <td> {{$ToDo -> updated_at}} </td>
-            <td><a href="delete/{{$ToDo -> id}}">Delete</a></td>
+            <td> {{$task->id}} </td>
+            <td> {{$task->title}} </td>
+            <td> {{$task->task}} </td>
+            <td> {{$task->status ? 'Completed' : 'Pending'}} </td>
+            <td>
+                <a href="{{ route('edit_task', $task->id) }}">Edit</a>
+                <a href="{{ route('delete_task', $task->id) }}">Delete</a>
+            </td>
             </tr>
             @endforeach
         </table>
