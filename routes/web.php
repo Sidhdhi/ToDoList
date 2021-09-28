@@ -15,10 +15,14 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\TaskController@show' );
+Route::get('/', [TaskController::class, 'show'] );
 
-Route::get('createnew', 'App\Http\Controllers\TaskController@createnew' );
+Route::get('/createnew', [TaskController::class, 'createnew'] )->name('task_form');
 
-Route::get('savenew', 'App\Http\Controllers\TaskController@store' );
+Route::post('/savenew', [TaskController::class, 'store'] )->name('create_task');
 
-Route::get('delete/{id}', 'App\Http\Controllers\TaskController@deletes' );
+Route::get('/edit/{id}', [TaskController::class, 'editTask'] )->name('edit_task');
+
+Route::post('/edit/{id}', [TaskController::class, 'edit'] )->name('update_task');
+
+Route::get('/delete/{id}', [TaskController::class, 'delete'] )->name('delete_task');
